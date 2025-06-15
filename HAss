@@ -1,0 +1,14 @@
+services:
+  homeassistant:
+    image: homeassistant/home-assistant
+    container_name: HomeAssistant
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+     test: curl -f http://localhost:8123/ || exit 1
+    restart: always
+    network_mode: host
+    volumes:
+      - /volume1/docker/homeassistant:/config:rw
+    environment:
+      TZ: Europe/Berlin
