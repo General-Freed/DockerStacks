@@ -9,6 +9,6 @@ services:
     restart: always
     network_mode: host
     volumes:
-      - /volume1/docker/homeassistant:/config:rw
+      - ./hass-cfg:/config
     environment:
       TZ: Europe/Berlin
