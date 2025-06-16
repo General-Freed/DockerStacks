@@ -1,6 +1,6 @@
 services:
   homeassistant:
-    image: homeassistant/home-assistant
+    image: homeassistant/home-assistant:latest
     container_name: HomeAssistant
     security_opt:
       - no-new-privileges:true
