@@ -1,10 +1,12 @@
 services:
   squid:
-    image: ubuntu/squid
+    image: ubuntu/squid:latest
+    container_name: squid
     ports:
-      - 0.0.0.0:3128:3128
+      - 3128:3128
     environment:
       TZ: Europe/Berlin
     volumes:
       - ./squid-data:/var/spool/squid
       - ./squid-logs:/var/log/squid
+    restart: unless-stopped
