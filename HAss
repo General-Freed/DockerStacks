@@ -6,7 +6,7 @@ services:
       - no-new-privileges:true
     healthcheck:
      test: curl -f http://localhost:8123/ || exit 1
-    restart: always
+    restart: unless-stopped
     network_mode: host
     volumes:
       - ./hass-cfg:/config
