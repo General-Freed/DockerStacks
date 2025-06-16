@@ -3,6 +3,7 @@ services:
     image: ubuntu/squid:latest
     container_name: squid
 hostname: docker_squid
+network_mode: bridge
     ports:
       - 3128:3128
     environment:
