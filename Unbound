@@ -1,14 +1,14 @@
 services:
   unbound:
-    image: alpinelinux/unbound:latest
     container_name: unbound
-    restart: unless-stopped
-    network_mode: bridge
-    network: docker-net
+    image: alpinelinux/unbound:latest
     hostname: docker-unbound
+    network_mode: bridge
+    network: docker-net    
     ports:
       - 5335:53
     volumes:
       - ./unbound-etc:/etc
     environment:
       TZ: Europe/Berlin
+    restart: unless-stopped
