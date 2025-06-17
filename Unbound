@@ -1,0 +1,10 @@
+services:
+  unbound:
+    image: alpinelinux/unbound:latest
+    container_name: unbound
+    restart: unless-stopped
+    network_mode: bridge
+    volumes:
+      - ./unbound-etc:/etc
+    environment:
+      TZ: Europe/Berlin
