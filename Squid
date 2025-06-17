@@ -1,14 +1,15 @@
 services:
   squid:
+    container_name: squid    
     image: ubuntu/squid:latest
-    container_name: squid
-hostname: docker_squid
-network_mode: bridge
+    hostname: docker_squid
+    network_mode: bridge
+    network: docker-net
     ports:
       - 3128:3128
-    environment:
-      TZ: Europe/Berlin
     volumes:
       - ./squid-data:/var/spool/squid
       - ./squid-logs:/var/log/squid
+    environment:
+      TZ: Europe/Berlin
     restart: unless-stopped
