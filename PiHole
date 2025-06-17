@@ -1,0 +1,24 @@
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    hostname: docker-pihole
+    network_mode: bridge
+    network: docker-net
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 80:80/tcp"
+      - 443:443/tcp
+      - 67:67/udp
+      - 123:123/udp
+    volumes:
+      - ./pihole-etc:/etc/pihole
+    environment:
+      TZ: Europe/Berlin
+      FTLCONF_webserver_api_password: 'pwd'
+      FTLCONF_dns_listeningMode: 'all'
+    cap_add:
+      - NET_ADMIN
+      - SYS_TIME
+    restart: unless-stopped
