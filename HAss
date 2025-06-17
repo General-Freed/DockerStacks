@@ -1,14 +1,12 @@
 services:
   homeassistant:
+    container_name: homeassistant    
     image: homeassistant/home-assistant:latest
-    container_name: HomeAssistant
-    security_opt:
-      - no-new-privileges:true
     healthcheck:
      test: curl -f http://localhost:8123/ || exit 1
-    restart: unless-stopped
     network_mode: host
     volumes:
       - ./hass-cfg:/config
     environment:
       TZ: Europe/Berlin
+    restart: unless-stopped
