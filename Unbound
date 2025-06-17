@@ -4,6 +4,10 @@ services:
     container_name: unbound
     restart: unless-stopped
     network_mode: bridge
+    network: docker-net
+    hostname: docker-unbound
+    ports:
+      - 5335:53
     volumes:
       - ./unbound-etc:/etc
     environment:
