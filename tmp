@@ -1,3 +1,28 @@
+services:
+ pihole:
+   container_name: pihole
+   hostname: pihole
+   image: pihole/pihole:latest
+   networks:
+     dns_net:
+       ipv4_address: 172.50.0.6
+   ports:
+   - "53:53/tcp"
+   - "53:53/udp"
+   - "67:67/udp"
+   - "80:80/tcp"
+   - "443:443/tcp"
+   environment:
+   - 'TZ=America/New_York'
+   - 'WEBPASSWORD='
+   - 'DNS1=172.50.0.7#5053'
+   - 'DNS2=no'
+   volumes:
+   - './etc-pihole/:/etc/pihole/'
+   - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+   cap_add:
+   - NET_ADMIN
+   restart: unless-stopped
  unbound:
    container_name: unbound
    image: mvance/unbound:latest
@@ -12,3 +37,32 @@
    healthcheck:
      disable: true
    restart: unless-stopped
+
+
+
+
+
+
+
+
+# ------------------------------------------------
+
+unbound:
+   container_name: unbound
+   image: mvance/unbound:latest
+   networks:
+     dns_net:
+       ipv4_address: 172.50.0.7
+   volumes:
+   - './unbound:/opt/unbound/etc/unbound'
+   ports:
+   - "5053:5053/tcp"
+   - "5053:5053/udp"
+   healthcheck:
+     disable: true
+   restart: unless-stopped
+
+
+
+
+
