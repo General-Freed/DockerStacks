@@ -1,0 +1,14 @@
+ unbound:
+   container_name: unbound
+   image: mvance/unbound:latest
+   networks:
+     dns_net:
+       ipv4_address: 172.50.0.7
+   volumes:
+   - './unbound:/opt/unbound/etc/unbound'
+   ports:
+   - "5053:5053/tcp"
+   - "5053:5053/udp"
+   healthcheck:
+     disable: true
+   restart: unless-stopped
