@@ -3,8 +3,6 @@ services:
     container_name: squid    
     image: ubuntu/squid:latest
     hostname: docker_squid
-    network_mode: bridge
-    network: docker-net
     ports:
       - 3128:3128
     volumes:
@@ -13,3 +11,7 @@ services:
     environment:
       TZ: Europe/Berlin
     restart: unless-stopped
+networks:
+  default:
+    external:
+      name: docker-net
