@@ -3,8 +3,6 @@ services:
     container_name: unbound
     image: alpinelinux/unbound:latest
     hostname: docker-unbound
-    network_mode: bridge
-    network: docker-net    
     ports:
       - 5335:53
     volumes:
@@ -12,3 +10,7 @@ services:
     environment:
       TZ: Europe/Berlin
     restart: unless-stopped
+networks:
+  default:
+    external:
+      name: docker-net
