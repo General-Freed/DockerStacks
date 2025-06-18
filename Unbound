@@ -6,7 +6,7 @@ services:
     ports:
       - 5335:53
     volumes:
-      - ./unbound-etc:/etc
+      - ./unbound-etc:/etc/unbound
     environment:
       TZ: Europe/Berlin
     restart: unless-stopped
